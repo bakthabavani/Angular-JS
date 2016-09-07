@@ -1,0 +1,14 @@
+<div class="container">
+    <form #f="ngForm" action="" (ngSubmit)="onBlur(f)">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" #uname="ngModel" ngModel required (blur)="onBlur(uname)">
+        </div>
+        <div class="alert alert-danger" *ngIf="uname.errors?.required && uname.touched">
+            Username is required
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!f.valid" >
+        </div>
+    </form>
+</div>
