@@ -3,18 +3,12 @@ import {LikeComponent} from './like.component';
 import {NavComponent} from './nav.component';
 import {PanelComponent} from './panel.component';
 import {LoginComponent} from './login.component'; 
+import {CommentComponent} from './commenttd.component';
 @Component({
   selector: 'my-app',
   template: `
-  
-    <h1>My First Angular 2 App</h1>
-    <nav></nav>
-    <vm-panel>
-        <div class="heading">Head Content</div>
-        <div class="body">Body Content</div>
-    </vm-panel>
-    <login-form></login-form>
+      <comment></comment>
   `,
-  directives:[LikeComponent,NavComponent,PanelComponent,LoginComponent]
+  directives:[LikeComponent,NavComponent,PanelComponent,LoginComponent,CommentComponent]
 })
 export class AppComponent { }

@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var like_component_1 = require('./like.component');
-var nav_component_1 = require('./nav.component');
-var panel_component_1 = require('./panel.component');
-var login_component_1 = require('./login.component');
-var commenttd_component_1 = require('./commenttd.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var forms_1 = require('@angular/forms');
+var CommentComponent = (function () {
+    function CommentComponent() {
     }
-    AppComponent = __decorate([
+    CommentComponent.prototype.handler = function (form) {
+        console.log(form);
+    };
+    CommentComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n      <comment></comment>\n  ",
-            directives: [like_component_1.LikeComponent, nav_component_1.NavComponent, panel_component_1.PanelComponent, login_component_1.LoginComponent, commenttd_component_1.CommentComponent]
+            selector: 'comment',
+            templateUrl: 'app/comment.template.html',
+            directives: [forms_1.FORM_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], CommentComponent);
+    return CommentComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CommentComponent = CommentComponent;
+//# sourceMappingURL=comment.component.js.map
