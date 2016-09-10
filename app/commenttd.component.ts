@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {REACTIVE_FORM_DIRECTIVES,FORM_PROVIDERS,FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
 
 import {CustomValidators} from './custom.validators'
+
 @Component({
     selector:'comment',
     templateUrl:'app/commenttd.template.html',

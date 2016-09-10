@@ -1,4 +1,7 @@
 "use strict";
+/// <reference path="../typings/index.d.ts" />
+require('jquery');
+require('underscore');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');

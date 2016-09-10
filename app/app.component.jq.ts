@@ -13,18 +13,7 @@ import {Observable} from 'rxjs/Rx';
 })
 export class AppComponent implements AfterViewInit { 
     ngAfterViewInit(){
-        var keyups=Observable.fromEvent($('#search'),'keyup')
-                   .map(e=>e.target.value)
-                   .filter(e=>e.length>3)
-                   .debounceTime(400)
-                   .distinctUntilChanged()
-                   .mergeMap((text)=>{
-                      var url="https://api.github.com/users/"+text;
-                      var promise=$.getJSON(url);
-                      return Observable.fromPromise(promise);
-                   });
-        keyups.subscribe(data=>console.log(data));
-        /*var debounce=_.debounce(function(text){
+        var debounce=_.debounce(function(text){
             var url="https://api.github.com/users/"+text;
             $.getJSON(url,function(data){
               console.log(data);
@@ -34,6 +23,6 @@ export class AppComponent implements AfterViewInit {
             var text=e.target.value; 
             if(text.length<5) return;        
             debounce(text);    
-        });*/
+        });
     }
 }
