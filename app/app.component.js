@@ -9,22 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
+var post_service_1 = require('./post.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_postService) {
+        this._postService = _postService;
+        this._postService.getPosts().subscribe(function (data) { return console.log(data); });
     }
     AppComponent.prototype.ngAfterViewInit = function () {
-        var keyups = Rx_1.Observable.fromEvent($('#search'), 'keyup')
-            .map(function (e) { return e.target.value; })
-            .filter(function (e) { return e.length > 3; })
-            .debounceTime(400)
-            .distinctUntilChanged()
-            .mergeMap(function (text) {
-            var url = "https://api.github.com/users/" + text;
-            var promise = $.getJSON(url);
-            return Rx_1.Observable.fromPromise(promise);
-        });
-        keyups.subscribe(function (data) { return console.log(data); });
+        /*var keyups=Observable.fromEvent($('#search'),'keyup')
+                   .map(e=>e.target.value)
+                   .filter(e=>e.length>3)
+                   .debounceTime(500)
+                   .distinctUntilChanged()
+                   .mergeMap((text)=>{
+                      var url="https://api.github.com/users/"+text;
+                      var promise=$.getJSON(url);
+                      return Observable.fromPromise(promise);
+                   });
+        keyups.subscribe(data=>console.log(data));
+*/
         /*var debounce=_.debounce(function(text){
             var url="https://api.github.com/users/"+text;
             $.getJSON(url,function(data){
@@ -40,9 +43,10 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <div class=\"container\">\n      <div class=\"form-group\">\n        <label for=\"search\">Search</label>\n        <input class=\"form-control\" type=\"text\" name=\"search\" id=\"search\"/>\n      </div>\n    </div>  \n  "
+            template: "\n    <div class=\"container\">\n      <div class=\"form-group\">\n        <label for=\"search\">Search</label>\n        <input class=\"form-control\" type=\"text\" name=\"search\" id=\"search\"/>\n      </div>\n    </div>  \n  ",
+            providers: [post_service_1.PostService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [post_service_1.PostService])
     ], AppComponent);
     return AppComponent;
 }());

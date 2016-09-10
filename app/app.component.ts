@@ -1,5 +1,6 @@
 import { Component,AfterViewInit } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import {PostService} from './post.service';
 @Component({
   selector: 'my-app',
   template: `
@@ -9,14 +10,18 @@ import {Observable} from 'rxjs/Rx';
         <input class="form-control" type="text" name="search" id="search"/>
       </div>
     </div>  
-  `
+  `,
+  providers:[PostService]
 })
-export class AppComponent implements AfterViewInit { 
+export class AppComponent implements AfterViewInit {
+    constructor(private _postService:PostService){
+      this._postService.getPosts().subscribe(data=>console.log(data));
+    }
     ngAfterViewInit(){
-        var keyups=Observable.fromEvent($('#search'),'keyup')
+        /*var keyups=Observable.fromEvent($('#search'),'keyup')
                    .map(e=>e.target.value)
                    .filter(e=>e.length>3)
-                   .debounceTime(400)
+                   .debounceTime(500)
                    .distinctUntilChanged()
                    .mergeMap((text)=>{
                       var url="https://api.github.com/users/"+text;
@@ -24,6 +29,7 @@ export class AppComponent implements AfterViewInit {
                       return Observable.fromPromise(promise);
                    });
         keyups.subscribe(data=>console.log(data));
+*/
         /*var debounce=_.debounce(function(text){
             var url="https://api.github.com/users/"+text;
             $.getJSON(url,function(data){
